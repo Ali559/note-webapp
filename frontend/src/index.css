@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@100;200&family=Simonetta:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-size: 1.2rem;
+	font-family: 'Simonetta';
+}
+
+button {
+	cursor: pointer;
+}
+
+input::placeholder,
+input::-moz-placeholder,
+input::-webkit-input-placeholder {
+	color: #bfbfba;
+	opacity: 1;
+}
