@@ -96,9 +96,7 @@ export default function Home() {
 				console.log(data.message);
 				return;
 			}
-			if (response.status == 200) {
-				setNotes(data.notes);
-			}
+			if (data.notes) setNotes((prev) => (prev = data.notes));
 		} catch (err) {
 			console.log(err);
 		}
@@ -127,8 +125,11 @@ export default function Home() {
 	};
 	useEffect(
 		() => {
-			setFilteredData(notes);
-			setRender((prevRender) => !prevRender);
+			if (notes.length !== 0) {
+				setFilteredData(notes);
+				console.log(notes);
+				setRender(!render);
+			}
 		},
 		[ notes ]
 	);
