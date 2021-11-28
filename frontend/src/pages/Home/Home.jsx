@@ -15,6 +15,7 @@ import Cookies from 'universal-cookie';
 const cookie = new Cookies();
 export default function Home() {
 	const navigate = useNavigate();
+	const [ render, setRender ] = useState(false);
 	const [ noteId, setNoteId ] = useState('');
 	const [ deleted, setDeleted ] = useState(false);
 	const [ filteredData, setFilteredData ] = useState([]);
@@ -97,7 +98,6 @@ export default function Home() {
 			}
 			if (response.status == 200) {
 				setNotes(data.notes);
-				setFilteredData(data.notes);
 			}
 		} catch (err) {
 			console.log(err);
@@ -125,6 +125,13 @@ export default function Home() {
 	const selectedTags = (tags) => {
 		setTags(tags);
 	};
+	useEffect(
+		() => {
+			setFilteredData(notes);
+			setRender((prevRender) => !prevRender);
+		},
+		[ notes ]
+	);
 	useEffect(
 		() => {
 			if (deleted === true) {
@@ -296,7 +303,7 @@ export default function Home() {
 				</div>
 				<div className="main-content">
 					<div className="note-container">
-						{typeof notes !== undefined || notes !== undefined ? (
+						{render ? (
 							filteredData.map((note, i) => {
 								return (
 									<Card
